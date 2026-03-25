@@ -1,150 +1,302 @@
-/* 1. Variables de Diseño para cambiar colores rápido */
+/* --- VARIABLES Y RESET --- */
 :root {
-    --primary-color: #e67e22; /* Naranja industrial / Resina */
-    --dark-bg: #1a1a1a;      /* Antracita oscuro */
-    --light-bg: #f4f4f4;     /* Gris muy claro */
-    --text-main: #2d3436;
-    --white: #ffffff;
+    --gold: #c4a47c;       /* Dorado OSEVEN */
+    --dark: #1a1a1a;       /* Negro Profundo */
+    --light-gray: #f9f9f9; /* Gris muy claro para fondos */
+    --text-gray: #4a4a4a;  /* Gris para texto de cuerpo */
+    --serif: 'Playfair Display', serif;
+    --sans: 'Inter', sans-serif;
 }
 
-/* 2. Reset y Base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: var(--text-main);
-    background-color: var(--white);
+    font-family: var(--sans);
     line-height: 1.8;
+    color: var(--text-gray);
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* 3. Navegación Minimalista */
-nav {
-    background: rgba(26, 26, 26, 0.95);
-    padding: 20px 0;
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- NAVEGACIÓN PREMIUM --- */
+.main-nav {
     position: fixed;
-    width: 100%;
     top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.95);
     z-index: 1000;
-    backdrop-filter: blur(5px);
+    border-bottom: 1px solid #eee;
 }
 
-nav ul {
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 15px 20px;
     display: flex;
-    justify-content: center;
-    list-style: none;
-    gap: 40px;
-}
-
-nav a {
-    color: var(--white);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: var(--primary-color);
-}
-
-#inicio {
-    height: 100vh;
-    /* IMPORTANTE: El nombre del archivo debe coincidir con el tuyo */
-    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
-                url('./fotos/NW2A0646.png'); 
-    background-size: cover;
-    
-    /* ESTO MUEVE EL RELOJ A LA DERECHA (65%) PARA CENTRAR EL TEXTO EN LA ESFERA */
-    background-position: 65% center; 
-    
-    display: flex;
-    justify-content: center; 
+    justify-content: space-between;
     align-items: center;
-    color: white;
-    text-align: center;
 }
 
-#inicio h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(3.5rem, 12vw, 7rem);
+.logo {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--dark);
+    letter-spacing: 1px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    transition: color 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: var(--gold);
+}
+
+
+
+.hero-content h1 {
+    font-family: var(--serif);
+    font-size: clamp(4rem, 15vw, 8rem); /* Tamaño fluido */
+    font-weight: 700;
     margin: 0;
     line-height: 0.9;
+    letter-spacing: -2px;
+}
+
+.hero-content .subtitle {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 300;
     text-transform: uppercase;
+    letter-spacing: 6px;
+    color: var(--gold);
+    margin-top: 15px;
 }
 
-#inicio p {
-    font-family: 'Inter', sans-serif;
-    letter-spacing: 5px;
-    font-size: 1.1rem;
-    color: #c4a47c; /* Color dorado */
+/* --- DISEÑO EDITORIAL --- */
+.editorial-section {
+    padding: 120px 0;
+    position: relative;
 }
 
-/* 5. Secciones y Títulos */
-section {
-    padding: 100px 15%;
+.section-number {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--gold);
+    font-style: italic;
+    position: absolute;
+    top: 125px;
+    left: -30px;
 }
 
 h2 {
-    font-size: 2.5rem;
-    position: relative;
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 400;
+    color: var(--dark);
     margin-bottom: 50px;
-    color: var(--dark-bg);
+    line-height: 1.1;
 }
 
-h2::after {
-    content: '';
+.lead-text {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--dark);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+strong {
+    font-weight: 600;
+    color: var(--dark);
+}
+
+/* --- GRID ESTILO CATÁLOGO --- */
+.magazine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 50px;
+    margin-top: 80px;
+}
+
+.grid-item {
+    border-top: 1px solid #eee;
+    padding-top: 30px;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+}
+
+.grid-item h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--gold);
+    margin-bottom: 15px;
+}
+
+.grid-item p {
+    font-size: 1rem;
+    color: var(--text-gray);
+}
+
+/* --- SECCIÓN PROYECTOS --- */
+.project-list {
+    list-style: none;
+    margin-top: 40px;
+    column-count: 2; /* Dos columnas para la lista */
+    column-gap: 50px;
+}
+
+.project-list li {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 25px;
+}
+
+.project-list li::before {
+    content: '→';
+    color: var(--gold);
     position: absolute;
     left: 0;
-    bottom: -10px;
-    width: 60px;
-    height: 4px;
-    background: var(--primary-color);
 }
 
-/* 6. Tarjetas de Contenido (Overview / Ecosystem) */
-article {
-    border-left: 3px solid #eee;
-    padding: 20px 30px;
-    margin-bottom: 40px;
-    transition: 0.4s ease;
+.partners-text {
+    margin-top: 60px;
+    font-size: 1.1rem;
+    border-top: 1px solid #eee;
+    padding-top: 30px;
 }
 
-article:hover {
-    border-left-color: var(--primary-color);
-    background: var(--light-bg);
+/* --- SECCIÓN BIOGRAFÍA (CHENYONG) --- */
+.about-section {
+    background-color: var(--light-gray);
+    padding: 100px 80px;
+    margin: 80px 0;
 }
 
-h3 {
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-size: 1.4rem;
+.bio-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    max-width: 900px;
 }
 
-/* 7. Footer Estilo Corporativo */
-footer {
-    background: var(--dark-bg);
-    color: var(--white);
-    padding: 80px 15% 40px;
-    text-align: left;
+/* --- FOOTER --- */
+.main-footer {
+    padding: 60px 0;
+    text-align: center;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #999;
 }
 
-footer h2 {
-    color: var(--white);
+/* --- RESPONSIVE ADJUSTMENTS --- */
+@media (max-width: 1024px) {
+    .editorial-section { padding: 80px 20px; }
+    .section-number { left: 20px; top: 85px; }
+    .project-list { column-count: 1; }
+    .about-section { padding: 60px 40px; }
 }
 
-footer p {
-    opacity: 0.6;
+@media (max-width: 768px) {
+    .main-nav ul { display: none; } /* Menú simple para móvil */
+    .hero-content h1 { font-size: 4rem; }
+    h2 { font-size: 2.2rem; }
+    .lead-text { font-size: 1.2rem; }
 }
 
-/* 8. Ajustes para la biografía de Chenyong */
-article:has(h3:contains("CHENYONG")) {
-    background: #fdf2e9;
-    border-radius: 10px;
-    border: none;
+/* Contenedor que divide 50/50 */
+.hero-container {
+    display: flex;
+    width: 100%;
+    height: 100vh; /* Ocupa toda la pantalla */
+    align-items: center;
+}
+
+/* Sección Izquierda */
+.hero-left {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9; /* Fondo claro para resaltar el marco */
+    padding: 20px;
+}
+
+.image-frame {
+    width: 85%;
+    height: 80%;
+    border: 35px solid #000; /* Marco negro grueso */
+    outline: 5px solid #222;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sección Derecha */
+.hero-right {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    /* Agrega aquí el fondo de vetas de madera si lo deseas */
+}
+
+.text-content {
+    text-align: center;
+}
+
+.brand-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    color: #000;
+    margin: 0;
+}
+
+.brand-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: 6px;
+    color: #c4a47c; /* Dorado */
+    text-transform: uppercase;
 }
